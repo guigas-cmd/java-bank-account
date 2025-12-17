@@ -16,19 +16,17 @@ public class Program {
 
         System.out.print("Is there a initial deposit? (y/n): ");
         String choiceDeposit = sc.next();
-        double currency = 0;
+        double amount = 0;
 
-        Bank bk = new Bank(actNumber, actHolder, currency);
+        Bank bk = new Bank(actNumber, actHolder, amount);
 
         if (choiceDeposit.equals("n")) {
-            System.out.println("Account data: ");
-            System.out.printf("Account %d, Holder: %s, balance: $ %.2f \n", bk.getActNumber(), bk.getActHolder(), bk.getCurrency());
+            bk.updatedData();
         } else if (choiceDeposit.equals("y")) {
             System.out.print("Enter initial deposit value: ");
-            currency = sc.nextDouble();
-            bk.setCurrency(currency); // faz chamada de mudança do set
-            System.out.println("Updated account data: ");
-            System.out.printf("Account %d, Holder: %s, balance: $ %.2f \n", bk.getActNumber(), bk.getActHolder(), bk.getCurrency());
+            amount = sc.nextDouble();
+            bk.deposit(amount); // faz chamada de mudança do set
+            bk.updatedData();
         } else {
             System.out.println("--try again--");
             return;
@@ -36,14 +34,14 @@ public class Program {
 
         // DEPOSIT VALUE
         System.out.print("Enter a deposit value: ");
-        double amount = sc.nextDouble();
-        bk.setDeposit(amount);
+        amount = sc.nextDouble();
+        bk.deposit(amount);
         bk.updatedData();
 
         //  WITHDRAW VALUE
         System.out.print("Enter a withdraw value: ");
         double remove = sc.nextDouble();
-        bk.setWithDraw(remove);
+        bk.withdraw(remove);
         bk.updatedData();
 
 
